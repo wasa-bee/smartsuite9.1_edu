@@ -1,0 +1,165 @@
+
+<dom-module id="es-edu-list">
+	<style>
+		:host{
+			@apply(--vbox-layout);
+		}
+	</style>
+	
+	<template>
+	
+		<!-- 코드 Ajax -->
+		<sc-request-group init>
+			<!-- 회사코드 -->
+			<sc-ajax url="getAllCompanyList.do"
+					 last-response="{{codes.company}}">
+			</sc-ajax>
+		</sc-request-group>
+		
+		<!-- 사용여부 -->
+		<sc-code code="C009" value="{{codes.use_yn}}"></sc-code>
+		
+		<!-- 조회 Ajax -->
+		<sc-code code="C009" value="{{codes.use_yn}}"></sc-code>
+		<sc-ajax id="findUserList"
+				 url="findUserList.do"
+				 body="{{searchParam}}"
+				 last-response="{{resultList}}">
+		</sc-ajax>
+		
+		<cc-auth-checker check-list="auth-r, auth-s"></cc-auth-checker>
+		
+		<cc-page-title-bar page-title="사용자현황"></cc-page-title-bar>
+		
+		<cc-search-container on-search="onFindUserList" >
+			<table>
+				<colgroup>
+					<col style="width: 120px;"/>
+					<col />
+					<col style="width: 120px;"/>
+					<col />
+					<col style="width: 120px;"/>
+					<col />
+				</colgroup>
+				<tr>
+					<th><sc-label text="회사"></sc-label></th>
+					<td>
+						<sc-combobox-field items="{{codes.company}}" 
+						                   display-field="comp_nm"
+						                   value-field="comp_cd"
+						                   value="{{searchParam.comp_cd}}"
+						                   placeholder="전체">
+						</sc-combobox-field>
+					</td>
+					<th><sc-label text="아이디"></sc-label></th>
+					<td>
+						<sc-text-field value="{{searchParam.usr_id}}"></sc-text-field>
+					</td>
+					<th><sc-label text="이름"></sc-label></th>
+					<td>
+						<sc-text-field value="{{searchParam.usr_nm}}"></sc-text-field>
+					</td>
+				</tr>
+				<tr>
+					<th><sc-label text="TWO WAY"></sc-label></th>
+					<td>
+						<cc-user-search value="{{searchParam.test1}}"></cc-user-search>
+					</td>
+					<th><sc-label text="ONE WAY"></sc-label></th>
+					<td>
+						<cc-user-search value="[[searchParam.test2]]"></cc-user-search>
+					</td>
+				</tr>
+			</table>
+		</cc-search-container>
+		
+		<sc-grid class="flex"
+		         data-provider="{{resultList}}"
+		         on-item-click="onItemClick"
+		         use-state="false"
+		         use-selection="false">
+			<cc-grid-toolbar>
+				<sc-button text="신규추가" on-click="onAddUser" ></sc-button>
+			</cc-grid-toolbar>
+			<sc-grid-columns>
+				<sc-data-column     header-text="회사코드" data-field="comp_cd" text-align="center" width="100"></sc-data-column>
+				<sc-data-column     header-text="회사명"   data-field="comp_nm" text-align="left"   width="120"></sc-data-column>
+				<sc-data-column     header-text="아이디"   data-field="usr_id"  text-align="center" width="100" style-name="link"></sc-data-column>
+				<sc-data-column     header-text="이름"     data-field="usr_nm"  text-align="left"   width="150"></sc-data-column>
+				<sc-combobox-column header-text="사용여부" data-field="use_yn"  text-align="center" width="100"
+				                    items="{{codes.use_yn}}" display-field="label" value-field="data"></sc-combobox-column>
+			</sc-grid-columns>
+		</sc-grid>
+		
+	</template>
+	
+	
+	
+<script>
+	Polymer({
+		is: 'es-edu-list',
+		
+		properties : {
+			// 코드 데이터
+			codes : {
+				type: Object,
+				value: function() {
+					return {
+						comapny: [],
+						use_yn: []
+					}
+				}
+			},
+			// 조회조건
+			searchParam : {
+				type: Object,
+				value: function() {
+					return {};
+				}
+			},
+			// 조회결과
+			resultList : {
+				type: Array,
+				value : function() {
+					return [];
+				}
+			},
+		},
+		
+		// 조회 버튼 Click Event
+		onFindUserList : function() {
+			
+			UT.request(this.$.findUserList);
+		},
+		
+		// 신규 추가 버튼 Click Event
+		onAddUser : function() {
+			this.fire('show-detail', {isNew: true});
+		},
+		
+		// 그리드 Item Click Event
+		onItemClick : function(event) {
+			const data = event.detail.data,
+			      item = event.detail.item;
+			
+			if(item.dataField === 'usr_id'){
+				this.fire('show-detail', data);
+			}
+			
+		},
+	});
+	</script>
+	
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+

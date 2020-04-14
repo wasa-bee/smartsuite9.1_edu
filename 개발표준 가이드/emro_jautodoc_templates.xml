@@ -1,0 +1,633 @@
+<?xml version="1.0" standalone="yes"?>
+
+<templates>
+<template kind="1" name="Type.Param" default="false" signature="false">
+    <regex>(.+)Param</regex>
+    <example>AppParam</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144; param ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+</template>
+<template kind="1" name="Type.Validator" default="false" signature="false">
+    <regex>(.+)(Validator|ValidatorImpl)</regex>
+    <example>MenuValidator</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144; &#50976;&#54952;&#49457; &#52404;&#53356; &#52376;&#47532;&#47484; &#54616;&#45716; Validator ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+    <template kind="3" name="Type.Validator.Method.create" default="false" signature="false">
+            <regex>create(.+)</regex>
+            <example>createValidate</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49373;&#49457;&#49884; &#45936;&#51060;&#53552; &#50976;&#54952;&#49457; &#52404;&#53356;.
+ * &lt;pre&gt;
+ * ${e.g(1).rsfl()} &#49373;&#49457;&#49884; &#45936;&#51060;&#53552; &#50976;&#54952;&#49457;&#51012; &#52404;&#53356;&#54620;&#45796;.
+ * &lt;code&gt;
+ * &lt;/code&gt;
+ * &lt;/pre&gt;
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Validator.Method.validate" default="false" signature="false">
+            <regex>validate(.+)</regex>
+            <example>validateChg</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#45936;&#51060;&#53552; &#50976;&#54952;&#49457; &#52404;&#53356;.
+ * &lt;pre&gt;
+ * ${e.g(1).rsfl()} &#45936;&#51060;&#53552; &#50976;&#54952;&#49457;&#51012; &#52404;&#53356;&#54620;&#45796;.
+ * &lt;code&gt;
+ * &lt;/code&gt;
+ * &lt;/pre&gt;
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Validator.Method.save" default="false" signature="false">
+            <regex>save(.+)</regex>
+            <example>saveMenuValidator</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51200;&#51109;&#49884; &#45936;&#51060;&#53552; &#50976;&#54952;&#49457; &#52404;&#53356;.
+ * &lt;pre&gt;
+ * ${e.g(1).rsfl()} &#51200;&#51109;&#49884; &#45936;&#51060;&#53552; &#50976;&#54952;&#49457;&#51012; &#52404;&#53356;&#54620;&#45796;.
+ * &lt;code&gt;
+ * &lt;/code&gt;
+ * &lt;/pre&gt;
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Mapper" default="false" signature="false">
+    <regex>(.+)Mapper</regex>
+    <example>MenuMapper</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144; &#52376;&#47532;&#47484; &#54616;&#45716; Mapper ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+    <template kind="3" name="Type.Mapper.Method.find" default="false" signature="false">
+            <regex>find(.+)</regex>
+            <example>findMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51312;&#54924; DML&#51012; &#49892;&#54665;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Condition" default="false" signature="false">
+    <regex>(.+)Condition</regex>
+    <example>MenuCondition</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#45936;&#51060;&#53440; &#51312;&#44148; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+</template>
+<template kind="1" name="Type.Kind" default="false" signature="false">
+    <regex>(.+)Kind</regex>
+    <example>MenuKind</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#45936;&#51060;&#53440; &#50976;&#54805; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+</template>
+<template kind="1" name="Type.Dto" default="false" signature="false">
+    <regex>(.+)Dto</regex>
+    <example>MenuListDto</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#50752; &#44288;&#47144;&#46108; &#51221;&#48372;&#47484; &#45812;&#45716; Dto ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+</template>
+<template kind="1" name="Type.JUnit Test" default="false" signature="false">
+    <regex>Test(.+)</regex>
+    <example>TestMyClass</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)}&#50640; &#45824;&#54620; JUnit test &#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+</template>
+<template kind="1" name="Type.Service" default="false" signature="false">
+    <regex>(.+)(Service|ServiceImpl)</regex>
+    <example>MenuService</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144; &#52376;&#47532;&#54616;&#45716; &#49436;&#48708;&#49828; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+    <template kind="3" name="Type.Service.Method.save" default="false" signature="false">
+            <regex>save(.+)</regex>
+            <example>saveData</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51200;&#51109;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.create" default="false" signature="false">
+            <regex>create(.+)</regex>
+            <example>createData</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49373;&#49457;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.update" default="false" signature="false">
+            <regex>update(.+)</regex>
+            <example>updateMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49688;&#51221;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.insert" default="false" signature="false">
+            <regex>insert(.+)</regex>
+            <example>insertMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51077;&#47141;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.delete" default="false" signature="false">
+            <regex>delete(.+)</regex>
+            <example>deleteMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49325;&#51228;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.set" default="false" signature="false">
+            <regex>set(.+)</regex>
+            <example>setMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#44061;&#52404;&#47484; &#49444;&#51221;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Service.Method.find" default="false" signature="false">
+            <regex>find(.+)</regex>
+            <example>findMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51312;&#54924;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Query" default="false" signature="false">
+    <regex>(.+)(Query|QueryImpl)</regex>
+    <example>MenuQuery</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144;&#46108; &#45936;&#51060;&#53440; &#51312;&#54924;&#47484; &#52376;&#47532;&#54616;&#45716; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @Since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+    <template kind="3" name="Type.Query.Method.Query find" default="false" signature="false">
+            <regex>find(.+)</regex>
+            <example>findDataTEst</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51312;&#54924;&#47484; &#50836;&#52397;&#54620;&#45796;.
+ *
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Controller" default="false" signature="false">
+    <regex>(.+)Controller</regex>
+    <example>MenuController</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#44288;&#47144; &#52376;&#47532;&#47484; &#54616;&#45716; &#52968;&#53944;&#47204;&#47084; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @FileName ${file_name}
+ * @package ${package_name}
+ * @author ${user}
+ * @since ${date}
+ * @see 
+ * @&#48320;&#44221;&#51060;&#47141; : [${date}] ${user} &#52572;&#52488;&#51089;&#49457; 
+ */</text>
+    <template kind="3" name="Type.Controller.Method.save" default="false" signature="false">
+            <regex>save(.+)</regex>
+            <example>saveUser</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51200;&#51109;&#51012; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.update" default="false" signature="false">
+            <regex>update(.+)</regex>
+            <example>updateMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49688;&#51221;&#51012; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.create" default="false" signature="false">
+            <regex>create(.+)</regex>
+            <example>createMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49373;&#49457;&#51012; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.insert" default="false" signature="false">
+            <regex>insert(.+)</regex>
+            <example>insertMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51077;&#47141;&#51012; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.delete" default="false" signature="false">
+            <regex>delete(.+)</regex>
+            <example>deleteMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#49325;&#51228;&#47484; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.get" default="false" signature="false">
+            <regex>get(.+)</regex>
+            <example>getMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51312;&#54924;&#47484; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.set" default="false" signature="false">
+            <regex>set(.+)</regex>
+            <example>setMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#44061;&#52404;&#47484; &#49444;&#51221;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+    <template kind="3" name="Type.Controller.Method.find" default="false" signature="false">
+            <regex>find(.+)</regex>
+            <example>findMenu</example>
+            <text>/**
+ * ${e.g(1).rsfl()} &#51312;&#54924;&#47484; &#50836;&#52397;&#54620;&#45796;.
+ * 
+ * @author : ${user}
+ * @Date : ${date}
+ * @Method Name : ${e.g(0)}
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Factory" default="false" signature="false">
+    <regex>(.+)Factory</regex>
+    <example>MessageFactory</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e.g(1)} &#50724;&#48652;&#51229;&#53944;&#47484; &#49373;&#49457;&#54616;&#45716; &#54057;&#53664;&#47532; ${e.getType().fu()}&#51077;&#45768;&#45796;.
+ * 
+ * @author ${user}
+ */</text>
+    <template kind="3" name="Type.Factory.Method.create" default="false" signature="false">
+            <regex>create(.+)</regex>
+            <example>createMessage</example>
+            <text>/**
+ * &#49352;&#47196;&#50868; ${e.p().g(1)} &#50724;&#48652;&#51229;&#53944;&#47484; &#49373;&#49457;&#54633;&#45768;&#45796;.
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Observer" default="false" signature="false">
+    <regex>(.+)Observer</regex>
+    <example>ImageObserver</example>
+    <text>/**
+ * An asynchronous update interface for receiving notifications
+ * about ${e.g(1)} information as the ${e.g(1)} is constructed.
+ * 
+ * @author ${user}
+ */</text>
+    <template kind="3" name="Type.Observer.Method.update" default="false" signature="false">
+            <regex>.*</regex>
+            <example>imageUpdate</example>
+            <text>/**
+ * This method is called when information about an ${e.p().g(1)}
+ * which was previously requested using an asynchronous
+ * interface becomes available.
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Listener" default="false" signature="false">
+    <regex>(.+)Listener</regex>
+    <example>AutodocListener</example>
+    <text>/**
+ * The listener interface for receiving ${e.g(1).fl()} events.
+ * The class that is interested in processing a ${e.g(1).fl()}
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's &lt;code&gt;add${e.g(1)}Listener&lt;code&gt; method. When
+ * the ${e.g(1).fl()} event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see ${e.g(1)}Event
+ * 
+ * @author ${user}
+ */</text>
+    <template kind="3" name="Type.Listener.Method.created" default="false" signature="false">
+            <regex>(.*)Created</regex>
+            <example>autodocCreated</example>
+            <text>/**
+ * ${e.g(1).rs()}&#44032; &#49373;&#49457;&#46112; &#46412; &#54840;&#52636;&#46121;&#45768;&#45796;.
+ */</text>
+    </template>
+    <template kind="3" name="Type.Listener.Method.updated" default="false" signature="false">
+            <regex>(.*)Updated</regex>
+            <example>autodocUpdated</example>
+            <text>/**
+ * ${e.g(1).rs()}&#44032; &#50629;&#45936;&#51060;&#53944;&#46112;&#46412; &#54840;&#52636;&#46121;&#45768;&#45796;.
+ */</text>
+    </template>
+</template>
+<template kind="1" name="Type.Default" default="true" signature="false">
+    <regex>.+</regex>
+    <example>ExampleType</example>
+    <text>/**
+## type: class|interface|enum
+ * ${e} ${e.getType().fu()} &#51077;&#45768;&#45796;.
+ * 
+ * @author ${user}
+ */</text>
+</template>
+<template kind="2" name="Field.Field.serialVersionUID" default="false" signature="false">
+    <regex>serialVersionUID</regex>
+    <example>serialVersionUID</example>
+    <text>/** Generated serialVersionUID */</text>
+</template>
+<template kind="2" name="Field.fPrefix" default="false" signature="false">
+    <regex>f([A-Z].+)</regex>
+    <example>fExampleMember</example>
+    <text>/**
+ * The ${e.g(1).rsfl()}.
+ */</text>
+</template>
+<template kind="2" name="Field.thePrefix" default="false" signature="false">
+    <regex>the[A-Z].+</regex>
+    <example>theNumberOfQuestions</example>
+    <text>/**
+ * ${e.rsfu()}.
+ */</text>
+</template>
+<template kind="2" name="Field.Default" default="true" signature="false">
+    <regex>.+</regex>
+    <example>numberOfQuestions</example>
+    <text>/**
+#if(${e.isStatic()} &amp;&amp; ${e.isFinal()})
+ * The Constant ${e}.
+#else
+ * The ${e.rs()}.
+#end
+ */</text>
+</template>
+<template kind="3" name="Method.getInstance" default="false" signature="false">
+    <regex>getInstance</regex>
+    <example>getInstance</example>
+    <text>/**
+ * ${e.getDeclaringType()}&#51032; &#51064;&#49828;&#53556;&#49828;&#47484; &#48152;&#54872;&#54620;&#45796;.
+ * 
+ * @return single instance of ${e.getDeclaringType()}
+ */</text>
+</template>
+<template kind="3" name="Method.Getter" default="false" signature="true">
+    <regex>\S+ get(\S+)\(.*\)</regex>
+    <example>int getNumberOfQuestions()</example>
+    <text>/**
+ * ${e.g(1).rsfl()}&#51032; &#44050;&#51012; &#48152;&#54872;&#54620;&#45796;.
+ * 
+ * @return ${e.g(1).rsfl()}
+ */</text>
+</template>
+<template kind="3" name="Method.Setter" default="false" signature="true">
+    <regex>void set(\S+)\([^,]+ ([^,]+)\)</regex>
+    <example>void setNumberOfQuestions(int number)</example>
+    <text>/**
+ * ${e.g(1).rsfl()}&#50640; &#44050;&#51012; &#51648;&#51221;&#54620;&#45796;.
+ * 
+ * @param ${e.g(2)} new ${e.g(1).rsfl()}
+ */</text>
+</template>
+<template kind="3" name="Method.boolean Getter" default="false" signature="true">
+    <regex>boolean is(.+)\(.*\)</regex>
+    <example>boolean isBlue()</example>
+    <text>/**
+ * ${e.g(1).rsfl()}&#51064;&#51648; &#50500;&#45772;&#51648;&#47484; &#48152;&#54872;&#54620;&#45796;.
+ * 
+ * @return ${e.g(1).rsfl()}&#51060;&#47732; true
+ */</text>
+</template>
+<template kind="3" name="Method.Main-Method" default="false" signature="true">
+    <regex>void main\(String\[\] (\S+)\)</regex>
+    <example>void main(String[] args)</example>
+    <text>/**
+ * The main method.
+ * 
+ * @param ${e.g(1)} the arguments
+ */</text>
+</template>
+<template kind="3" name="Method.Constructor" default="false" signature="true">
+    <regex>(\S+)\(.*\)</regex>
+    <example>SimpleClass()</example>
+    <text>/**
+ * &#49352;&#47196;&#50868; ${e.g(1).rsfl()}&#47484; &#49373;&#49457;&#54616;&#45716; &#49373;&#49457;&#51088;.
+ */</text>
+</template>
+<template kind="3" name="Method.Returns void" default="false" signature="true">
+    <regex>void (.+)\(.*\)</regex>
+    <example>void doSomething()</example>
+    <text>/**
+ * ${e.g(1).rsfu()}.
+ */</text>
+</template>
+<template kind="3" name="Method.Returns boolean" default="false" signature="true">
+    <regex>boolean (\S+)\(.*\)</regex>
+    <example>boolean doSomething(int parameter)</example>
+    <text>/**
+ * ${e.g(1).rsfu()}.
+ * 
+ * @return true, if successful
+ */</text>
+</template>
+<template kind="3" name="Method.Returns other" default="false" signature="true">
+    <regex>(\S+) (\S+)\(.*\)</regex>
+    <example>ReturnValue calculateSomething()</example>
+    <text>/**
+ * ${e.g(2).rsfu()}.
+ * 
+ * @return the ${e.g(1).rsfl()}
+ */</text>
+</template>
+<template kind="3" name="Method.Default" default="true" signature="false">
+    <regex>.+</regex>
+    <example>doSomething</example>
+    <text>/**
+## Actually this is not used, because there
+## are templates for different return types
+ * ${e.rsfu()}.
+ */</text>
+</template>
+<template kind="4" name="Parameter.Generic Type Parameter" default="false" signature="false">
+    <regex>&lt;(.+)&gt;</regex>
+    <example>&lt;E&gt;</example>
+    <text>/**
+#if(${e.g(1)} == 'E')
+ * @param ${e} the element type
+#elseif(${e.g(1)} == 'K')
+ * @param ${e} the key type
+#elseif(${e.g(1)} == 'N')
+ * @param ${e} the number type
+#elseif(${e.g(1)} == 'V')
+ * @param ${e} the value type
+#else
+ * @param ${e} the generic type
+#end
+ */</text>
+</template>
+<template kind="4" name="Parameter.compUnit" default="false" signature="false">
+    <regex>compUnit</regex>
+    <example>compUnit</example>
+    <text>/**
+## Example for shortcuts
+ * @param ${e} the compilation unit
+ */</text>
+</template>
+<template kind="4" name="Parameter.pPrefix" default="false" signature="false">
+    <regex>p([A-Z].+)</regex>
+    <example>pField</example>
+    <text>/**
+ * @param ${e} the ${e.g(1).rsfl()} 
+ */</text>
+</template>
+<template kind="4" name="Parameter.Default" default="true" signature="false">
+    <regex>.+</regex>
+    <example>simpleParameter</example>
+    <text>/**
+ * @param ${e} the ${e.rsfl()}
+ */</text>
+</template>
+<template kind="5" name="Exception.IOException" default="false" signature="false">
+    <regex>IOException</regex>
+    <example>IOException</example>
+    <text>/**
+ * @throws ${e} Signals that an I/O exception has occurred.
+ */</text>
+</template>
+<template kind="5" name="Exception.Default" default="true" signature="false">
+    <regex>.+</regex>
+    <example>ExampleException</example>
+    <text>/**
+ * @throws ${e} the ${e.sfl()}
+ */</text>
+</template>
+</templates>
+

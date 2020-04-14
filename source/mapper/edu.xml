@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu">
+
+    <select id="findUserList" resultType="map">
+    	SELECT SYS_ID
+    	     , COMP_CD
+    	     , (SELECT ORG_NM
+    	          FROM ESAOGMG
+    	         WHERE SYS_ID     = A.SYS_ID
+    	           AND ORG_CD     = A.COMP_CD
+    	           AND ORG_TYP_CD = 'COMPANY'
+    	           AND STS       != 'D')         AS COMP_NM
+    	     , USR_ID
+    	     , USR_NM
+    	     , USE_YN
+    	  FROM ESAUSER A
+    	 WHERE SYS_ID = #{g.tenant}
+    	
+    	<if test='p.comp_cd != null and p.comp_cd != ""'>
+    	  AND COMP_CD = #{p.comp_cd}
+    	</if> 
+    	<if test='p.usr_id != null and p.usr_id != ""'>
+    	<bind name="usrIdPattern" value="'%' + p.usr_id + '%'"></bind>	
+	      AND USR_ID LIKE UPPER(#{usrIdPattern})
+    	</if>
+    	
+    	<if test='p.usr_nm != null and p.usr_nm != ""'>
+    	<bind name="usrNmPattern" value="'%' + p.usr_nm + '%'"></bind>	
+	      AND USR_NM LIKE #{usrNmPattern}
+    	</if>
+    	
+    	  AND USR_CLS = 'B'
+    	
+    </select>
+    
+    <select id="findUserInfo" resultType="map">
+    	SELECT SYS_ID
+    	     , COMP_CD
+    	     , USR_ID
+    	     , USR_NM
+    	     , USR_EN_NM
+    	     , EMAIL
+    	     , MOBILE_NO
+    	     , MAIL_RECEIVED_YN
+    	     , USE_YN
+    	  FROM ESAUSER
+    	 WHERE SYS_ID = #{g.tenant}
+    	   AND USR_ID = #{p.usr_id} 
+    </select>
+    
+    
+    
+    <insert id="insertInfoEdu">
+    	INSERT INTO ESAUSER (
+    		  SYS_ID
+    		, USR_ID
+    		, USR_NM
+    		, USR_EN_NM
+    		, COMP_CD
+    		, USE_YN
+    		, MOBILE_NO
+    		, EMAIL
+    		, MAIL_RECEIVED_YN
+    		, USR_CLS
+    		, STS
+    		, REG_DT
+    		, REG_ID
+    	) VALUES (
+    		  #{g.tenant}
+			, #{p.usr_id}
+			, #{p.usr_nm}
+			, #{p.usr_en_nm}
+			, #{p.comp_cd}
+			, #{p.use_yn}
+			, #{p.mobile_no}
+			, #{p.email}
+			, #{p.mail_received_yn}
+			, #{p.usr_cls}
+			, 'C'
+			, #{g.now}
+			, #{g.username}
+    	)
+    </insert>
+    
+    <update id="updateInfoEdu">
+    	UPDATE ESAUSER
+    	SET USR_NM           = #{p.usr_nm}
+    	  , USR_EN_NM        = #{p.usr_en_nm}
+    	  , EMAIL            = #{p.email}
+    	  , MOBILE_NO        = #{p.mobile_no}
+    	  , MAIL_RECEIVED_YN = #{p.mail_received_yn}
+    	  , USE_YN           = #{p.use_yn}
+    	  , STS              = 'U'
+    	  , MOD_DT           = #{g.now}
+    	  , MOD_ID           = #{g.username}
+        WHERE SYS_ID = #{g.tenant}
+          AND USR_ID = #{p.usr_id} 	  
+    </update>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</mapper>
