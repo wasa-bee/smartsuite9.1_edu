@@ -1,4 +1,3 @@
-
 <dom-module id="es-edu-list">
 	<style>
 		:host{
@@ -7,20 +6,15 @@
 	</style>
 	
 	<template>
-	
 		<!-- 코드 Ajax -->
 		<sc-request-group init>
-			<!-- 회사코드 -->
-			<sc-ajax url="getAllCompanyList.do"
-					 last-response="{{codes.company}}">
-			</sc-ajax>
+			<!-- 사용여부 -->
+			<sc-code code="C009" value="{{codes.useYn}}"></sc-code>
+			<!-- 직위 -->
+			<sc-code code="C005" value="{{codes.posCd}}"></sc-code>
 		</sc-request-group>
 		
-		<!-- 사용여부 -->
-		<sc-code code="C009" value="{{codes.use_yn}}"></sc-code>
-		
 		<!-- 조회 Ajax -->
-		<sc-code code="C009" value="{{codes.use_yn}}"></sc-code>
 		<sc-ajax id="findUserList"
 				 url="findUserList.do"
 				 body="{{searchParam}}"
@@ -42,15 +36,6 @@
 					<col />
 				</colgroup>
 				<tr>
-					<th><sc-label text="회사"></sc-label></th>
-					<td>
-						<sc-combobox-field items="{{codes.company}}" 
-						                   display-field="comp_nm"
-						                   value-field="comp_cd"
-						                   value="{{searchParam.comp_cd}}"
-						                   placeholder="전체">
-						</sc-combobox-field>
-					</td>
 					<th><sc-label text="아이디"></sc-label></th>
 					<td>
 						<sc-text-field value="{{searchParam.usr_id}}"></sc-text-field>
@@ -59,15 +44,10 @@
 					<td>
 						<sc-text-field value="{{searchParam.usr_nm}}"></sc-text-field>
 					</td>
-				</tr>
-				<tr>
-					<th><sc-label text="TWO WAY"></sc-label></th>
+					<th><sc-label text="직위"></sc-label></th>
 					<td>
-						<cc-user-search value="{{searchParam.test1}}"></cc-user-search>
-					</td>
-					<th><sc-label text="ONE WAY"></sc-label></th>
-					<td>
-						<cc-user-search value="[[searchParam.test2]]"></cc-user-search>
+						<sc-combobox-field value="{{searchParam.pos_cd}}" items="{{codes.posCd}}" placeholder="전체"
+						                   display-field="label" value-field="data"></sc-combobox-field>
 					</td>
 				</tr>
 			</table>
@@ -82,18 +62,16 @@
 				<sc-button text="신규추가" on-click="onAddUser" ></sc-button>
 			</cc-grid-toolbar>
 			<sc-grid-columns>
-				<sc-data-column     header-text="회사코드" data-field="comp_cd" text-align="center" width="100"></sc-data-column>
-				<sc-data-column     header-text="회사명"   data-field="comp_nm" text-align="left"   width="120"></sc-data-column>
-				<sc-data-column     header-text="아이디"   data-field="usr_id"  text-align="center" width="100" style-name="link"></sc-data-column>
-				<sc-data-column     header-text="이름"     data-field="usr_nm"  text-align="left"   width="150"></sc-data-column>
+				<sc-data-column header-text="아이디" data-field="usr_id" text-align="center" width="100" style-name="link"></sc-data-column>
+				<sc-data-column header-text="이름" data-field="usr_nm" text-align="center" width="150"></sc-data-column>
+				<sc-data-column header-text="부서" data-field="usr_nm" text-align="center" width="150"></sc-data-column>
+				<sc-combobox-column header-text="직위" data-field="pos_cd" text-align="center" width="150"
+				                    items="{{codes.posCd}}" display-field="label" value-field="data"></sc-combobox-column>
 				<sc-combobox-column header-text="사용여부" data-field="use_yn"  text-align="center" width="100"
-				                    items="{{codes.use_yn}}" display-field="label" value-field="data"></sc-combobox-column>
+				                    items="{{codes.useYn}}" display-field="label" value-field="data"></sc-combobox-column>
 			</sc-grid-columns>
 		</sc-grid>
-		
 	</template>
-	
-	
 	
 <script>
 	Polymer({
@@ -105,8 +83,8 @@
 				type: Object,
 				value: function() {
 					return {
-						comapny: [],
-						use_yn: []
+						useYn: [],
+						posCd: []
 					}
 				}
 			},
@@ -139,27 +117,13 @@
 		
 		// 그리드 Item Click Event
 		onItemClick : function(event) {
-			const data = event.detail.data,
+			var data = event.detail.data,
 			      item = event.detail.item;
 			
 			if(item.dataField === 'usr_id'){
 				this.fire('show-detail', data);
 			}
-			
 		},
 	});
 	</script>
-	
 </dom-module>
-
-
-
-
-
-
-
-
-
-
-
-
