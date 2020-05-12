@@ -1,6 +1,5 @@
 package smartsuite.app.bp.edu;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,38 +9,35 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import smartsuite.app.common.shared.Const;
 
 @Service
 @Transactional
 public class EduService {
-
-	@Inject
-	private SqlSession sqlSession;
 	
-	public List findUserList(Map param) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("edu.findUserList", param);
+	@Inject
+	SqlSession sqlSession;
+	
+	public List<Map<String,Object>> findEduList (Map<String,Object> searchParam) {
+		return sqlSession.selectList("edu.findEduList", searchParam);
 	}
-
-	public Map findUserInfo(Map param) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("edu.findUserInfo", param);
-	}
-
-	public Map saveInfoEdu(Map param) {
-		// TODO Auto-generated method stub
-		Map<String, Object> resultInfo = new HashMap<String, Object>();
-		Boolean isNew = (Boolean) (param.get("isNew") == null ? false : param.get("isNew"));
-		
-		if(isNew) {
-			sqlSession.insert("edu.insertInfoEdu", param);
-		}else {
-			sqlSession.update("edu.updateInfoEdu", param);
+	
+	public void saveEduInfo (Map<String,Object> param) {
+		if(param.get("is_new") != null) {
+			sqlSession.insert("edu.insertEduInfo", param);
+		} else {
+			sqlSession.update("edu.updateEduInfo", param);
 		}
 		
-		resultInfo.put(Const.RESULT_STATUS, Const.SUCCESS);
-		return resultInfo;
+	}
+	
+	public Map<String,Object> findEduInfo (Map<String,Object> searchParam) {
+		return sqlSession.selectOne("edu.findEduInfo", searchParam);
+	}
+	
+	
+	public void deleteEduInfo (Map<String,Object> param) {
+		sqlSession.delete("edu.deleteEduInfo", param);
+		
 	}
 	
 	

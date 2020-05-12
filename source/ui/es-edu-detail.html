@@ -1,211 +1,213 @@
 <dom-module id="es-edu-detail">
-	<style>
-		:host{
-			@apply(--vbox-layout);
-		}
-	</style>
-	
+	<style></style>
 	<template>
-		<!-- 코드 Ajax -->
-		<sc-request-group init>
-			<!-- 회사코드 -->
-			<sc-ajax url="getAllCompanyList.do"
-					 last-response="{{codes.company}}">
-			</sc-ajax>
-		</sc-request-group>
+	
+		<sc-code code="C005" value="{{codes.posCd}}" init></sc-code>
 		
-		<!-- 조회 Ajax -->
-		<sc-ajax id="findInfoEdu"
-		         url="findInfoEdu.do"
-		         last-response="{{userInfo}}">
-		</sc-ajax>        
-		
-		<!-- 저장 Ajax --> 
-		<sc-ajax id="saveInfoEdu"
-		         url="saveInfoEdu.do"
+		<sc-ajax id="saveEduInfo"
+		         url="saveEduInfo.do"
 		         body="{{userInfo}}"
-		         on-response="completeSaveInfoEdu">
-		</sc-ajax>
+		         on-response="completeSaveEduInfo"></sc-ajax>
+		         
+		<sc-ajax id="findEduInfo"
+		         url="findEduInfo.do"
+		         last-response="{{userInfo}}"></sc-ajax>
+		         
+		<sc-ajax id="deleteEduInfo"
+		         url="deleteEduInfo.do"
+		         body="{{userInfo}}"
+		         on-response="completeDeleteEduInfo"></sc-ajax>         
+		         
+		         		         
 		
-		<cc-auth-checker check-list="auth-r, auth-s"></cc-auth-checker>
-		
-		<cc-sub-title-bar title="사용자상세조회">
-			<sc-button text="저장" on-click="onSave" auth-s></sc-button>
-			<sc-button text="닫기" on-click="onShowList"></sc-button>
-		</cc-sub-title-bar>
-		
+		<cc-page-title-bar title-text="사용자상세정보">
+			<sc-button text="저장" on-click="onSave"></sc-button>
+			<sc-button text="삭제" on-click="onDelete" hidden="[[formula('newMode')]]"></sc-button>
+			<sc-button text="닫기" on-click="onClose"></sc-button>
+		</cc-page-title-bar>
 		<table class="tb-form">
 			<colgroup>
-				<col style="width: 120px"/>
-				<col />
-				<col style="width: 120px"/>
-				<col />
+				<col style="width:150px">
+				<col>
+				<col style="width:150px">
+				<col>
 			</colgroup>
 			<tr>
-				<th><sc-label text="회사"></sc-label></th>
-				<td>
-					<sc-combobox-field items="{{codes.company}}"
-					                   display-field="comp_nm"
-					                   value-field="comp_cd"
-					                   placeholder="선택"
-					                   required="[[formula('isNew')]]"
-					                   readonly="[[!formula('isNew')]]"
-					                   value="{{userInfo.comp_cd}}">
-					</sc-combobox-field>
-				</td>
 				<th><sc-label text="아이디"></sc-label></th>
 				<td>
-					<sc-text-field value="{{userInfo.usr_id}}" 
-								   required="[[formula('isNew')]]"
-					 			   readonly="[[!formula('isNew')]]">
-					 </sc-text-field>
+					<sc-text-field value="{{userInfo.usr_id}}" required="[[formula('newMode')]]" max-length="15" readonly="[[!formula('newMode')]]"></sc-text-field>
 				</td>
-			</tr>
-			<tr>
 				<th><sc-label text="이름"></sc-label></th>
 				<td>
-					<sc-text-field value="{{userInfo.usr_nm}}"></sc-text-field>
+					<sc-text-field value="{{userInfo.usr_nm}}" required="[[formula('newMode')]]" readonly="[[!formula('newMode')]]"></sc-text-field>
 				</td>
+			</tr>
+			
+			<tr>
 				<th><sc-label text="이름(영문)"></sc-label></th>
 				<td>
 					<sc-text-field value="{{userInfo.usr_en_nm}}"></sc-text-field>
 				</td>
+				<th><sc-label text="부서"></sc-label></th>
+				<td>
+					<cc-dept-search value="{{userInfo.dept_nm}}" result-value="{{userInfo.dept_cd}}"></cc-dept-search>
+				</td>
 			</tr>
+			
 			<tr>
+				<th><sc-label text="직급"></sc-label></th>
+				<td>
+					<sc-combobox-field value="{{userInfo.pos_cd}}"
+					                   items="{{codes.posCd}}"
+					                   display-field="label"
+					                   value-field="data"></sc-combobox-field>
+				</td>
 				<th><sc-label text="이메일"></sc-label></th>
 				<td>
-					<sc-text-field value="{{userInfo.email}}" 
-					               required="true"
-					               validator-type="email"></sc-text-field>
-				</td>
-				<th><sc-label text="HP번호"></sc-label></th>
-				
-				<td hidden="[[formula('test')]]">
-					<sc-text-field value="{{userInfo.mobile_no}}"
-					               format-type="phone" 
-					               input-cover="true"
-					               validator-type="mobile"></sc-text-field>
+					<sc-text-field value="{{userInfo.email}}" validator-type="email"></sc-text-field>
 				</td>
 			</tr>
+			
 			<tr>
+				<th><sc-label text="HP번호"></sc-label></th>
+				<td>
+					<sc-text-field value="{{userInfo.mobile_no}}" validator-type="phone" input-cover="true" format-type="phone"></sc-text-field>
+				</td>
 				<th><sc-label text="이메일수신여부"></sc-label></th>
 				<td>
 					<sc-checkbox-field input-value="{{userInfo.mail_received_yn}}"
 					                   checked-value="Y"
 					                   un-checked-value="N"></sc-checkbox-field>
 				</td>
+			</tr>
+			
+			<tr>
 				<th><sc-label text="사용여부"></sc-label></th>
 				<td>
 					<sc-checkbox-field input-value="{{userInfo.use_yn}}"
-									   checked-value="Y"
-									   un-checked-value="N"></sc-checkbox-field>
+					 				   checked-value="Y"
+					                   un-checked-value="N"></sc-checkbox-field>
+				</td>
+				<th></th>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<th><sc-label text="첨부파일"></sc-label></th>
+				<td colspan="3">
+					<sc-upload id="uploadPanel" class="h-300" 
+					           value="{{userInfo.attfile_no}}"></sc-upload>
 				</td>
 			</tr>
 		</table>
-		
 	</template>
-	
 	<script>
 		Polymer({
-			is: 'es-edu-detail',
+			is: "es-edu-detail",
 			
-			properties : {
-				// 코드 데이터 
+			properties: {
+				// 코드성 데이터
 				codes: {
 					type: Object,
 					reset: false,
-					value : function() {
+					value: function() {
 						return {
-							company: []
-						}
+							// 직급
+							posCd: []
+						};
 					}
 				},
 				// 사용자 정보
-				userInfo : {
+				userInfo: {
 					type: Object,
-					value : function() {
+					value: function() {
 						return {};
 					}
+				}				
+			},
+			
+			formulas: {
+				// 신규 추가 여부
+				newMode : function() {
+					return this.userInfo.is_new;
 				}
 			},
 			
-			observers : [
-				'changeCompCd(userInfo.comp_cd)'
-			],
-			
-			
-			
-			formulas : {
-				isNew : function() {
-					return 'AA';
-				},
+			load: function(data) {
+				var me = this;
 				
-				test : function() {
-					return this.userInfo.comp_cd === "C100";
-				}
-			},
-			
-			changeCompCd : function() {
-				this.applyFormula('test');
-			},
-			
-			
-			// Load
-			load : function(data) {
-				if(data.isNew){
-					// 신규
-					this.set('userInfo.use_yn', 'Y');
-					this.set('userInfo.usr_cls', 'B');
-					this.set('userInfo.isNew', true);
+				if(data.isNew) {
+					// 신규추가
+					me.set("userInfo.is_new", true);
+					me.set("userInfo.use_yn", "Y");
+					me.set("userInfo.mail_received_yn", "Y");
 				} else {
-					// 수정
-					this.$.findInfoEdu.body = {
-						usr_id : data.usr_id
+					// 상세조회
+					me.$.findEduInfo.body = {
+							usr_id : data.usr_id
 					};
-					UT.request(this.$.findInfoEdu);
+					UT.request(me.$.findEduInfo);
+					
 				}
 				
-				this.applyFormula('isNew');
+				me.applyFormula();
+				
 			},
 			
-			
-			// 저장 버튼 Click Event
-			onSave : function() {
-				const me = this;
-				if(!me.validate()){
-					// 유효하지 않은 입력값이 있습니다. 오류 정보를 확인해 주세요.
-					UT.alert("STD.E0000");
+			// 저장 버튼 클릭 시
+			onSave: function() {
+				var me = this;
+				// 1. 유효성 검사
+				if(!me.validate()) {
+					UT.alert("STD.E0000"); // 입력하신 정보를 다시 확인하여 주세요.
 					return;
 				}
 				
-				UT.confirm("STD.N1200", function() {
-					UT.request(me.$.saveInfoEdu);
+				
+				// 2. 확인메시지
+				UT.confirm("STD.N1200", function() { // 저장 하시겠습니까?
+						
+					me.$.uploadPanel.upload().then(function() {
+						// 3. 서버요청
+						UT.request(me.$.saveEduInfo);
+					});	
+				});
+				
+				
+			},
+			
+			// 저장 완료 시 호출
+			completeSaveEduInfo: function() {
+				var me = this;
+				UT.alert("STD.N2400", function() { // 저장 완료 되었습니다.
+					me.onClose();
 				});
 			},
 			
-			// 저장 Callback Function
-			completeSaveInfoEdu : function(e, res) {
-				const result = res.response,
-				      me = this;
-				
-				if(result.result_status === 'S'){
-					UT.alert("STD.N2400", function() {
-						me.onShowList();
-					})
-				}
+			onDelete: function() {
+				var me = this;
+				UT.confirm("삭제 하시겠습니까?", function() {
+					UT.request(me.$.deleteEduInfo);
+				}, null, true);
 			},
 			
-			// 닫기 버튼 Click Event
-			onShowList : function() {
+			completeDeleteEduInfo: function(){
+				var me = this;
+				UT.alert("삭제 완료 되었습니다.", function() {
+					me.onClose();
+				}, true);
+			},
+			
+			// 닫기 버튼 클릭 시
+			onClose: function() {
+				this.fire("show-list");
 				this.reset();
-				this.fire('show-list');
 			}
-		});
+			
+			
+			
+			
+		
+		})
 	</script>
 </dom-module>
-
-
-
-
-
-
